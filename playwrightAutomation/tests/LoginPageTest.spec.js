@@ -1,6 +1,8 @@
-import {test,expect} from '@playwright/test';
+import {expect} from '@playwright/test';
+const { test } = require('./mytest');
 
-test('Login page',async({page})=>{
+
+test('Login page',async({page,person})=>{
 
 // page.getByAltText=       "To locate element image with alt text"
 // page.getByPlaceholder    "To locate element has placeholder"
@@ -11,14 +13,17 @@ test('Login page',async({page})=>{
 // page.getByTitle          "To locate element with title attribute"
 //https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
 
-    await page.goto('https://www.demoblaze.com/');
+
+
+
+await page.goto('https://www.demoblaze.com/');
 
     await page.locator('id=login2').click();
 
     //await page.click('id=login2');
 
-    await page.fill('#loginusername','pavanol');
-    await page.fill("input[id='loginpassword']",'test@123');
+    await page.fill('#loginusername',person.username);
+    await page.fill("input[id='loginpassword']",person.password);
     
     await page.click("//button[normalize-space()='Log in']");
 
